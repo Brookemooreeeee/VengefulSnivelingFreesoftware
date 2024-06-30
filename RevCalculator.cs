@@ -18,8 +18,24 @@ public static class RevCalculator
     //Determines if this years comp is larger than last years comp
     bool isMore = thisYear > lastYear;
 
+    //Determines display message based on number of contestants
+    string compMessage;
+    if (thisYear > 2 * lastYear)
+    {
+      compMessage = "The competition is more than twice as big this year!";
+    }
+    else if (thisYear > lastYear)
+    {
+      compMessage = "The competition is bigger than ever!";
+    }
+    else
+    {
+      compMessage = "A tighter race this year! Come out and cast your vote!";
+    }
+
     //Display results
-    Console.WriteLine($"\nLast year's competition had {lastYear} contestants, and this year's has {thisYear} contestants");
+    Console.WriteLine();
+    Console.WriteLine(compMessage);
     Console.WriteLine($"Revenue expected this year is ${rev}");
     Console.WriteLine($"It is {(isMore ? "true" : "false")} that this year's competition is bigger than last year's");
     Console.WriteLine();
