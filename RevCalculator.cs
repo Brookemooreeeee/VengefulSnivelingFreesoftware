@@ -5,13 +5,11 @@ public static class RevCalculator
   //Method to calculate and display expected revenue for the year
   public static void CalculateRev()
   {
-    //Prompt user for number of contestants from last year and read and parse input
-    Console.Write("\nEnter the number of contestants from last year:");
-    int lastYear = int.Parse(Console.ReadLine());
+    //Check if input for yeear is valid
+    int lastYear = CheckContestantRange("\nEnter the number of contestants from last year:");
 
-    //Prompt user for number of contestants from this year and read and parse input
-    Console.Write("\nEnter the number of contestants from this year:");
-    int thisYear = int.Parse(Console.ReadLine());
+    //Check if input for yeear is valid
+    int thisYear = CheckContestantRange("\nEnter the number of contestants from this year:");
 
     //calulate expected revenue for this year
     int rev = thisYear * 25;
@@ -44,5 +42,25 @@ public static class RevCalculator
     Console.WriteLine();
     GreenvilleApp app = new GreenvilleApp();
     app.Start();
+  }
+
+  //Method to check if input is valid
+  private static int CheckContestantRange(string prompt)
+  {
+    int contestants;
+    //Loop until input is valid
+    while (true)
+    {
+      Console.WriteLine(prompt);
+      //Try to parse input as an integer
+      if(int.TryParse(Console.ReadLine(), out contestants) && contestants >= 0 && contestants <= 30)
+      {
+        //valid input break out
+        break;
+      }
+      //Error message for invalid input
+      Console.WriteLine("Invalid input. Please enter a number between 0 and 30.");
+    }
+    return contestants;
   }
 }
